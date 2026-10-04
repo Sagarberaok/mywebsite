@@ -9,6 +9,7 @@
 </head>
 <body>
 
+  <div id="scrollProgress"></div>
   <div id="particles"></div>
 
   <!-- OPENING -->
@@ -25,10 +26,10 @@
   <main id="site" class="hidden">
 
     <!-- HERO -->
-    <section class="hero section-pad">
+    <section class="hero section-pad reveal-section">
       <div class="glow glow-one"></div>
       <div class="glow glow-two"></div>
-      <div class="hero-content">
+      <div class="hero-content hero-depth">
         <p class="eyebrow">CHAPTER 18 BEGINS</p>
         <h1>Happy Birthday,<br><span>Mira</span> 💗</h1>
         <p class="hero-sub">To a reader, a dreamer, an ambivert, and someone who deserves a beautiful new chapter.</p>
@@ -37,7 +38,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section class="section-pad">
+    <section class="section-pad reveal-section">
       <p class="eyebrow">A FEW THINGS ABOUT YOU</p>
       <h2>The Mira I Know</h2>
       <div class="trait-grid">
@@ -49,7 +50,7 @@
     </section>
 
     <!-- COUNTDOWN -->
-    <section class="section-pad countdown-section">
+    <section class="section-pad countdown-section reveal-section">
       <p class="eyebrow">UNTIL THE SPECIAL MOMENT</p>
       <h2>A New Chapter Is Coming</h2>
       <div class="countdown">
@@ -62,7 +63,7 @@
     </section>
 
     <!-- LETTER -->
-    <section id="letter" class="section-pad">
+    <section id="letter" class="section-pad reveal-section">
       <p class="eyebrow">A LETTER</p>
       <h2>Open When You're Ready 💌</h2>
       <div class="envelope" id="envelope">
@@ -79,7 +80,7 @@
     </section>
 
     <!-- CAKE -->
-    <section class="section-pad cake-section">
+    <section class="section-pad cake-section reveal-section">
       <p class="eyebrow">MAKE A WISH</p>
       <h2>18 Candles for 18 ✨</h2>
       <p class="instruction">Tap the candles one by one.</p>
@@ -96,7 +97,7 @@
     </section>
 
     <!-- MEMORIES / PHOTO PLACEHOLDERS -->
-    <section class="section-pad">
+    <section class="section-pad reveal-section">
       <p class="eyebrow">MEMORIES</p>
       <h2>Five Little Chapters 📸</h2>
       <p class="section-sub">The placeholders are ready. Add your five photos later without changing the layout.</p>
@@ -110,7 +111,7 @@
     </section>
 
     <!-- BOOK CHAPTERS -->
-    <section class="section-pad book-section">
+    <section class="section-pad book-section reveal-section">
       <p class="eyebrow">HER STORY</p>
       <h2>If Mira Were a Book... 📖</h2>
       <div class="chapter" data-chapter="1"><span>Chapter 01</span><h3>Once upon a time...</h3><p>A girl with her own little world, her own thoughts, and stories waiting to be discovered.</p></div>
@@ -120,7 +121,7 @@
     </section>
 
     <!-- GIFTS -->
-    <section class="section-pad">
+    <section class="section-pad reveal-section">
       <p class="eyebrow">THREE LITTLE SURPRISES</p>
       <h2>Choose a Gift 🎁</h2>
       <div class="gift-grid">
@@ -132,16 +133,17 @@
     </section>
 
     <!-- DARK CHOCOLATE SECRET -->
-    <section class="section-pad chocolate-section">
+    <section class="section-pad chocolate-section reveal-section">
       <p class="eyebrow">A SECRET</p>
       <h2>Something Dark 🍫</h2>
       <p>Because apparently every birthday story needs a little dark chocolate.</p>
       <button id="chocolateBtn" class="chocolate-btn">🍫 Tap the chocolate</button>
+      <p class="tiny-note chocolate-hint">There may be more than one secret...</p>
       <div id="secretMessage" class="secret-message hidden">Secret unlocked: You deserve a year sweeter than your favourite chocolate. 🤎✨</div>
     </section>
 
     <!-- MUSIC -->
-    <section class="section-pad music-section">
+    <section class="section-pad music-section reveal-section">
       <p class="eyebrow">A SOUNDTRACK</p>
       <h2>Press Play 🎵</h2>
       <button id="musicBtn" class="primary-btn">▶ Play</button>
@@ -150,7 +152,7 @@
     </section>
 
     <!-- FINAL -->
-    <section id="final" class="final-section">
+    <section id="final" class="final-section reveal-section">
       <div class="final-content">
         <div class="big-heart">♥</div>
         <p class="eyebrow">THE LAST PAGE</p>

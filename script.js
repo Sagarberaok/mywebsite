@@ -72,6 +72,36 @@ for (let i = 0; i < 35; i++) {
 }
 
 
+
+
+/* ---------- Premium V2 motion ---------- */
+const progressBar = document.getElementById("scrollProgress");
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add("visible");
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal-section").forEach(section => revealObserver.observe(section));
+
+function updateScrollProgress() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+}
+window.addEventListener("scroll", updateScrollProgress, { passive: true });
+updateScrollProgress();
+
+// Subtle pointer depth on larger screens.
+if (window.matchMedia("(min-width: 800px)").matches) {
+  const hero = document.querySelector(".hero-content");
+  window.addEventListener("pointermove", e => {
+    const x = (e.clientX / window.innerWidth - .5) * 8;
+    const y = (e.clientY / window.innerHeight - .5) * 6;
+    if (hero) hero.style.transform = `translate3d(${x}px,${y}px,0)`;
+  }, { passive: true });
+}
+
+
 /* ---------- Smooth navigation ---------- */
 
 document.querySelectorAll("[data-scroll]").forEach(button => {
@@ -168,12 +198,33 @@ for (let i = 1; i <= PERSONAL.age; i++) {
 
 /* ---------- Photo placeholders ---------- */
 
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxCaption = document.getElementById("lightboxCaption");
+
 document.querySelectorAll(".photo-card").forEach(card => {
+  const filename = card.dataset.photo;
+  const probe = new Image();
+  probe.onload = () => {
+    card.classList.remove("placeholder");
+    card.innerHTML = `<img src="${filename}" alt="${card.querySelector("b")?.textContent || "Memory"}"><span>${card.querySelector("span")?.textContent || ""}</span><b>${card.querySelector("b")?.textContent || "Memory"}</b>`;
+  };
+  probe.onerror = () => {};
+  probe.src = filename;
+
   card.addEventListener("click", () => {
-    const filename = card.dataset.photo;
-    showToast("Later, add " + filename + " to the website folder.");
+    if (card.classList.contains("placeholder")) {
+      showToast("Later, add " + filename + " to the website folder.");
+      return;
+    }
+    lightboxImg.src = filename;
+    lightboxCaption.textContent = card.querySelector("b")?.textContent || "Memory";
+    lightbox.classList.remove("hidden");
   });
 });
+
+document.getElementById("closeLightbox")?.addEventListener("click", () => lightbox.classList.add("hidden"));
+lightbox?.addEventListener("click", e => { if (e.target === lightbox) lightbox.classList.add("hidden"); });
 
 
 /*
@@ -206,9 +257,16 @@ document.querySelectorAll(".gift").forEach(gift => {
 
 /* ---------- Chocolate secret ---------- */
 
+let chocolateTaps = 0;
 document.getElementById("chocolateBtn").addEventListener("click", () => {
+  chocolateTaps++;
+  const button = document.getElementById("chocolateBtn");
+  button.classList.remove("chocolate-pop");
+  void button.offsetWidth;
+  button.classList.add("chocolate-pop");
   document.getElementById("secretMessage").classList.remove("hidden");
-  burstConfetti(45);
+  burstConfetti(chocolateTaps >= 3 ? 90 : 45);
+  if (chocolateTaps === 3) showToast("You found the extra-sweet secret. 🍫✨");
 });
 
 
