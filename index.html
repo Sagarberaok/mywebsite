@@ -1,313 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Happy Birthday ❤️</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#10081c">
+  <title>For Mira — 18 ✨</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Background effects -->
-    <div class="stars"></div>
+  <div id="particles"></div>
 
-    <!-- ================= OPENING ================= -->
+  <!-- OPENING -->
+  <section id="opening" class="screen">
+    <div class="opening-card">
+      <div class="mini-book">📖</div>
+      <p class="eyebrow">A little story made for you</p>
+      <h1>For <span>Mira</span></h1>
+      <p id="openingText"></p>
+      <button class="primary-btn" id="startBtn">Open your surprise ✨</button>
+    </div>
+  </section>
 
-    <section id="opening" class="screen active">
+  <main id="site" class="hidden">
 
-        <div class="opening-content">
-
-            <div class="gift-icon">🎁</div>
-
-            <h1>A Little Surprise...</h1>
-
-            <p id="typingText"></p>
-
-            <button id="startBtn">
-                Open Your Surprise ✨
-            </button>
-
-        </div>
-
+    <!-- HERO -->
+    <section class="hero section-pad">
+      <div class="glow glow-one"></div>
+      <div class="glow glow-two"></div>
+      <div class="hero-content">
+        <p class="eyebrow">CHAPTER 18 BEGINS</p>
+        <h1>Happy Birthday,<br><span>Mira</span> 💗</h1>
+        <p class="hero-sub">To a reader, a dreamer, an ambivert, and someone who deserves a beautiful new chapter.</p>
+        <button class="outline-btn" data-scroll="letter">Start the story ↓</button>
+      </div>
     </section>
 
-
-    <!-- ================= MAIN WEBSITE ================= -->
-
-    <main id="mainContent" class="hidden">
-
-        <!-- HERO -->
-
-        <section class="hero">
-
-            <div class="floating-balloon">🎈</div>
-
-            <div class="floating-balloon balloon2">🎈</div>
-
-            <div class="hero-content">
-
-                <p class="small-text">TODAY IS YOUR DAY</p>
-
-                <h1>
-                    Happy Birthday
-                    <span>❤️</span>
-                </h1>
-
-                <p class="subtitle">
-                    A little corner of the internet
-                    made just for you.
-                </p>
-
-                <button class="scroll-btn" onclick="scrollToSection('letter')">
-                    Begin the journey ↓
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= COUNTDOWN ================= -->
-
-        <section class="section countdown-section">
-
-            <p class="section-label">THE SPECIAL DAY</p>
-
-            <h2>Counting Down To Something Beautiful</h2>
-
-            <div class="countdown">
-
-                <div class="time-box">
-                    <span id="days">00</span>
-                    <small>Days</small>
-                </div>
-
-                <div class="time-box">
-                    <span id="hours">00</span>
-                    <small>Hours</small>
-                </div>
-
-                <div class="time-box">
-                    <span id="minutes">00</span>
-                    <small>Minutes</small>
-                </div>
-
-                <div class="time-box">
-                    <span id="seconds">00</span>
-                    <small>Seconds</small>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= LETTER ================= -->
-
-        <section id="letter" class="section">
-
-            <p class="section-label">A MESSAGE FOR YOU</p>
-
-            <h2>Dear You 💌</h2>
-
-            <div class="letter-card">
-
-                <p id="letterText"></p>
-
-                <span class="cursor">|</span>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= CAKE ================= -->
-
-        <section class="section cake-section">
-
-            <p class="section-label">MAKE A WISH</p>
-
-            <h2>Make A Wish 🎂</h2>
-
-            <p class="instruction">
-                Tap the candles to blow them out.
-            </p>
-
-            <div class="cake">
-
-                <div class="candle candle1"
-                     onclick="blowCandle(this)">
-                    <div class="flame"></div>
-                </div>
-
-                <div class="candle candle2"
-                     onclick="blowCandle(this)">
-                    <div class="flame"></div>
-                </div>
-
-                <div class="candle candle3"
-                     onclick="blowCandle(this)">
-                    <div class="flame"></div>
-                </div>
-
-                <div class="cake-top"></div>
-                <div class="cake-middle"></div>
-                <div class="cake-bottom"></div>
-
-            </div>
-
-            <p id="wishMessage" class="wish-message"></p>
-
-        </section>
-
-
-        <!-- ================= MEMORIES ================= -->
-
-        <section class="section memories">
-
-            <p class="section-label">LITTLE MEMORIES</p>
-
-            <h2>Moments Worth Remembering 📸</h2>
-
-            <div class="memory-container">
-
-                <div class="memory-card">
-                    <div class="memory-photo">📸</div>
-                    <h3>Memory One</h3>
-                    <p>A beautiful moment worth remembering.</p>
-                </div>
-
-                <div class="memory-card">
-                    <div class="memory-photo">🌸</div>
-                    <h3>Memory Two</h3>
-                    <p>Some moments deserve to stay forever.</p>
-                </div>
-
-                <div class="memory-card">
-                    <div class="memory-photo">✨</div>
-                    <h3>Memory Three</h3>
-                    <p>Another little chapter of the story.</p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= GIFTS ================= -->
-
-        <section class="section gifts">
-
-            <p class="section-label">A FEW SURPRISES</p>
-
-            <h2>Choose A Gift 🎁</h2>
-
-            <div class="gift-container">
-
-                <button class="gift-box"
-                        onclick="openGift(1)">
-                    🎁
-                    <span>Gift 1</span>
-                </button>
-
-                <button class="gift-box"
-                        onclick="openGift(2)">
-                    🎁
-                    <span>Gift 2</span>
-                </button>
-
-                <button class="gift-box"
-                        onclick="openGift(3)">
-                    🎁
-                    <span>Gift 3</span>
-                </button>
-
-            </div>
-
-            <p id="giftMessage"></p>
-
-        </section>
-
-
-        <!-- ================= MUSIC ================= -->
-
-        <section class="section music-section">
-
-            <p class="section-label">A LITTLE MUSIC</p>
-
-            <h2>Birthday Music 🎵</h2>
-
-            <button id="musicButton"
-                    onclick="toggleMusic()">
-
-                ▶ Play Music
-
-            </button>
-
-            <audio id="birthdayMusic" loop>
-                <source src="birthday.mp3" type="audio/mpeg">
-            </audio>
-
-            <p class="music-note">
-                Add your own <b>birthday.mp3</b>
-                file to the website folder.
-            </p>
-
-        </section>
-
-
-        <!-- ================= FINAL SURPRISE ================= -->
-
-        <section id="final" class="final-section">
-
-            <div class="final-content">
-
-                <div class="heart">❤️</div>
-
-                <h2>One Last Thing...</h2>
-
-                <p>
-                    May this new chapter of your life
-                    bring you happiness, peace,
-                    laughter and countless beautiful moments.
-                </p>
-
-                <button onclick="finalSurprise()">
-                    Open Final Surprise ✨
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <p>
-                Made with ❤️ just for you.
-            </p>
-
-            <p class="footer-small">
-                Happy Birthday 🎂
-            </p>
-
-        </footer>
-
-    </main>
-
-
-    <!-- Confetti container -->
-
-    <div id="confetti"></div>
-
-
-    <script src="script.js"></script>
-
+    <!-- ABOUT -->
+    <section class="section-pad">
+      <p class="eyebrow">A FEW THINGS ABOUT YOU</p>
+      <h2>The Mira I Know</h2>
+      <div class="trait-grid">
+        <article class="trait-card"><span>📚</span><h3>Book lover</h3><p>Every good story has a reader who makes it come alive.</p></article>
+        <article class="trait-card"><span>🍫</span><h3>Dark chocolate</h3><p>A small reminder that the best things can be a little bittersweet.</p></article>
+        <article class="trait-card"><span>🌙</span><h3>Ambivert</h3><p>A little quiet, a little social — perfectly Mira.</p></article>
+        <article class="trait-card"><span>✨</span><h3>Chapter 18</h3><p>A whole new chapter is waiting to be written.</p></article>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section class="section-pad countdown-section">
+      <p class="eyebrow">UNTIL THE SPECIAL MOMENT</p>
+      <h2>A New Chapter Is Coming</h2>
+      <div class="countdown">
+        <div><strong id="days">00</strong><small>days</small></div>
+        <div><strong id="hours">00</strong><small>hours</small></div>
+        <div><strong id="minutes">00</strong><small>minutes</small></div>
+        <div><strong id="seconds">00</strong><small>seconds</small></div>
+      </div>
+      <p class="tiny-note">The date can be changed later in <code>script.js</code>.</p>
+    </section>
+
+    <!-- LETTER -->
+    <section id="letter" class="section-pad">
+      <p class="eyebrow">A LETTER</p>
+      <h2>Open When You're Ready 💌</h2>
+      <div class="envelope" id="envelope">
+        <div class="envelope-top"></div>
+        <div class="envelope-body">
+          <span>Tap to open</span>
+          <b>For Mira</b>
+        </div>
+      </div>
+      <article class="letter-card hidden" id="letterCard">
+        <p id="personalLetter"></p><span class="typing-cursor">|</span>
+      </article>
+      <p class="tiny-note">Your real message can be added later in <code>script.js</code>.</p>
+    </section>
+
+    <!-- CAKE -->
+    <section class="section-pad cake-section">
+      <p class="eyebrow">MAKE A WISH</p>
+      <h2>18 Candles for 18 ✨</h2>
+      <p class="instruction">Tap the candles one by one.</p>
+      <div class="cake-wrap">
+        <div class="candles" id="candles"></div>
+        <div class="cake">
+          <div class="icing"></div>
+          <div class="cake-layer layer-one"></div>
+          <div class="cake-layer layer-two"></div>
+          <div class="cake-plate"></div>
+        </div>
+      </div>
+      <p id="wishMessage" class="wish-message"></p>
+    </section>
+
+    <!-- MEMORIES / PHOTO PLACEHOLDERS -->
+    <section class="section-pad">
+      <p class="eyebrow">MEMORIES</p>
+      <h2>Five Little Chapters 📸</h2>
+      <p class="section-sub">The placeholders are ready. Add your five photos later without changing the layout.</p>
+      <div class="gallery" id="gallery">
+        <button class="photo-card placeholder" data-photo="photo1.jpg"><span>01</span><b>Add photo 1</b></button>
+        <button class="photo-card placeholder" data-photo="photo2.jpg"><span>02</span><b>Add photo 2</b></button>
+        <button class="photo-card placeholder" data-photo="photo3.jpg"><span>03</span><b>Add photo 3</b></button>
+        <button class="photo-card placeholder" data-photo="photo4.jpg"><span>04</span><b>Add photo 4</b></button>
+        <button class="photo-card placeholder" data-photo="photo5.jpg"><span>05</span><b>Add photo 5</b></button>
+      </div>
+    </section>
+
+    <!-- BOOK CHAPTERS -->
+    <section class="section-pad book-section">
+      <p class="eyebrow">HER STORY</p>
+      <h2>If Mira Were a Book... 📖</h2>
+      <div class="chapter" data-chapter="1"><span>Chapter 01</span><h3>Once upon a time...</h3><p>A girl with her own little world, her own thoughts, and stories waiting to be discovered.</p></div>
+      <div class="chapter" data-chapter="2"><span>Chapter 02</span><h3>The little things</h3><p>Books, chocolate, conversations, quiet moments and the people who make ordinary days memorable.</p></div>
+      <div class="chapter" data-chapter="3"><span>Chapter 03</span><h3>Growing up</h3><p>18 isn't the ending of childhood. It's the beginning of a much bigger story.</p></div>
+      <div class="chapter special-chapter"><span>Chapter 18</span><h3>This one is still being written...</h3><p>And hopefully it becomes your most beautiful chapter yet.</p></div>
+    </section>
+
+    <!-- GIFTS -->
+    <section class="section-pad">
+      <p class="eyebrow">THREE LITTLE SURPRISES</p>
+      <h2>Choose a Gift 🎁</h2>
+      <div class="gift-grid">
+        <button class="gift" data-gift="0">🎁<small>Open me</small></button>
+        <button class="gift" data-gift="1">🎁<small>Try me</small></button>
+        <button class="gift" data-gift="2">🎁<small>One more</small></button>
+      </div>
+      <p id="giftMessage" class="gift-message"></p>
+    </section>
+
+    <!-- DARK CHOCOLATE SECRET -->
+    <section class="section-pad chocolate-section">
+      <p class="eyebrow">A SECRET</p>
+      <h2>Something Dark 🍫</h2>
+      <p>Because apparently every birthday story needs a little dark chocolate.</p>
+      <button id="chocolateBtn" class="chocolate-btn">🍫 Tap the chocolate</button>
+      <div id="secretMessage" class="secret-message hidden">Secret unlocked: You deserve a year sweeter than your favourite chocolate. 🤎✨</div>
+    </section>
+
+    <!-- MUSIC -->
+    <section class="section-pad music-section">
+      <p class="eyebrow">A SOUNDTRACK</p>
+      <h2>Press Play 🎵</h2>
+      <button id="musicBtn" class="primary-btn">▶ Play</button>
+      <p class="tiny-note">Later, put your song in this folder as <code>birthday.mp3</code>.</p>
+      <audio id="music" loop><source src="birthday.mp3" type="audio/mpeg"></audio>
+    </section>
+
+    <!-- FINAL -->
+    <section id="final" class="final-section">
+      <div class="final-content">
+        <div class="big-heart">♥</div>
+        <p class="eyebrow">THE LAST PAGE</p>
+        <h2>Happy 18th Birthday, Mira 🎂</h2>
+        <p id="finalMessage">May this chapter bring you beautiful people, unforgettable memories, peaceful nights, exciting mornings, and many, many reasons to smile.</p>
+        <button id="finalBtn" class="primary-btn">Open the final surprise ✨</button>
+      </div>
+    </section>
+
+    <footer>Made with a little code, a lot of thought, and ❤️</footer>
+  </main>
+
+  <div id="lightbox" class="lightbox hidden">
+    <button id="closeLightbox" aria-label="Close">×</button>
+    <img id="lightboxImg" alt="Memory">
+    <p id="lightboxCaption"></p>
+  </div>
+
+  <div id="toast"></div>
+  <script src="script.js"></script>
 </body>
 </html>

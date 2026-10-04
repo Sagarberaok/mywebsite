@@ -1,387 +1,278 @@
-/* =========================================
-   BIRTHDAY WEBSITE JAVASCRIPT
-========================================= */
+/* =========================
+   MIRA'S BIRTHDAY SITE
+   EDIT THE PERSONALIZATION
+   SECTION BELOW LATER.
+========================= */
+
+const PERSONAL = {
+  name: "Mira",
+  age: 18,
+
+  // Change this to the actual birthday.
+  // JavaScript months: January=0, February=1 ... December=11.
+  birthday: new Date(2026, 9, 20, 0, 0, 0),
+
+  opening: "A small digital surprise for someone who deserves a beautiful chapter.",
+
+  letter: `Dear Mira,
+
+Happy 18th birthday. ❤️
+
+I hope this new chapter brings you countless little moments that make you genuinely happy.
+
+Keep reading the stories you love, keep discovering new worlds, keep being wonderfully you, and never forget that the best chapters are often the ones we haven't written yet.
+
+I hope 18 brings you beautiful memories, good people, peaceful days, exciting adventures and, obviously, plenty of dark chocolate.
+
+This is only the beginning of your next chapter.
+
+Happy birthday, Mira. ✨`,
+
+  final: "May Chapter 18 be full of beautiful people, unforgettable memories, peaceful nights, exciting mornings, good books, dark chocolate and countless reasons to smile. ❤️",
+
+  gifts: [
+    "Gift 1: One year full of reasons to smile. ✨",
+    "Gift 2: A lifetime supply of imaginary dark chocolate. 🍫",
+    "Gift 3: And a reminder that someone is very glad you exist. ❤️"
+  ]
+};
 
 
-/* ================= OPENING TYPEWRITER ================= */
+/* ---------- Opening ---------- */
 
-const typingText =
-    "Someone made something special for you...";
+const openingText = document.getElementById("openingText");
+let openIndex = 0;
 
-let typingIndex = 0;
-
-function typeOpeningText() {
-
-    if (typingIndex < typingText.length) {
-
-        document.getElementById("typingText").textContent +=
-            typingText.charAt(typingIndex);
-
-        typingIndex++;
-
-        setTimeout(typeOpeningText, 60);
-    }
+function typeOpening() {
+  if (openIndex < PERSONAL.opening.length) {
+    openingText.textContent += PERSONAL.opening[openIndex++];
+    setTimeout(typeOpening, 45);
+  }
 }
+typeOpening();
 
-typeOpeningText();
-
-
-/* ================= START EXPERIENCE ================= */
-
-document.getElementById("startBtn").addEventListener(
-    "click",
-    function () {
-
-        document.getElementById("opening").style.display = "none";
-
-        document.getElementById("mainContent")
-            .classList.remove("hidden");
-
-        launchConfetti();
-
-        document.getElementById("mainContent")
-            .scrollIntoView();
-
-    }
-);
+document.getElementById("startBtn").addEventListener("click", () => {
+  document.getElementById("opening").classList.add("hidden");
+  document.getElementById("site").classList.remove("hidden");
+  burstConfetti(90);
+});
 
 
-/* ================= SCROLL ================= */
+/* ---------- Floating particles ---------- */
 
-function scrollToSection(id) {
+const particleBox = document.getElementById("particles");
 
-    document.getElementById(id)
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-}
-
-
-/* ================= LETTER TYPEWRITER ================= */
-
-const letter = `
-Today isn't just another day.
-
-It's a reminder of how special you are
-and how many beautiful moments are still
-waiting for you.
-
-I hope this new year of your life brings
-you happiness, peace, laughter and
-everything your heart wishes for.
-
-Keep smiling.
-
-Keep dreaming.
-
-And never forget how loved you are. ❤️
-`;
-
-let letterIndex = 0;
-let letterStarted = false;
-
-function typeLetter() {
-
-    if (letterIndex < letter.length) {
-
-        document.getElementById("letterText")
-            .textContent += letter.charAt(letterIndex);
-
-        letterIndex++;
-
-        setTimeout(typeLetter, 35);
-
-    }
+for (let i = 0; i < 35; i++) {
+  const p = document.createElement("i");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "%";
+  p.style.animationDelay = Math.random() * 8 + "s";
+  p.style.animationDuration = 6 + Math.random() * 8 + "s";
+  particleBox.appendChild(p);
 }
 
 
-/* Start letter when user scrolls near it */
+/* ---------- Smooth navigation ---------- */
 
-const letterObserver = new IntersectionObserver(
-    function(entries) {
-
-        if (entries[0].isIntersecting &&
-            !letterStarted) {
-
-            letterStarted = true;
-
-            typeLetter();
-        }
-
-    },
-    {
-        threshold: .3
-    }
-);
-
-letterObserver.observe(
-    document.getElementById("letter")
-);
+document.querySelectorAll("[data-scroll]").forEach(button => {
+  button.addEventListener("click", () => {
+    document.getElementById(button.dataset.scroll)
+      .scrollIntoView({ behavior: "smooth" });
+  });
+});
 
 
-/* ================= COUNTDOWN ================= */
-
-
-/*
-    CHANGE THIS DATE.
-
-    Format:
-
-    Year, Month-1, Day, Hour, Minute
-
-    Example:
-    December 25 2026 00:00
-
-    Month starts from 0 in JavaScript.
-
-    January = 0
-    February = 1
-    ...
-    December = 11
-*/
-
-const birthdayDate =
-    new Date(2026, 11, 25, 0, 0, 0);
-
+/* ---------- Countdown ---------- */
 
 function updateCountdown() {
+  const diff = PERSONAL.birthday - new Date();
 
-    const now = new Date();
+  if (diff <= 0) {
+    ["days", "hours", "minutes", "seconds"].forEach(id => {
+      document.getElementById(id).textContent = "00";
+    });
+    return;
+  }
 
-    const difference =
-        birthdayDate - now;
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor(diff / 3600000) % 24;
+  const minutes = Math.floor(diff / 60000) % 60;
+  const seconds = Math.floor(diff / 1000) % 60;
 
-    if (difference <= 0) {
-
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
-
-        return;
-    }
-
-    const days =
-        Math.floor(
-            difference / (1000 * 60 * 60 * 24)
-        );
-
-    const hours =
-        Math.floor(
-            (difference / (1000 * 60 * 60)) % 24
-        );
-
-    const minutes =
-        Math.floor(
-            (difference / (1000 * 60)) % 60
-        );
-
-    const seconds =
-        Math.floor(
-            (difference / 1000) % 60
-        );
-
-
-    document.getElementById("days")
-        .textContent = String(days).padStart(2, "0");
-
-    document.getElementById("hours")
-        .textContent = String(hours).padStart(2, "0");
-
-    document.getElementById("minutes")
-        .textContent = String(minutes).padStart(2, "0");
-
-    document.getElementById("seconds")
-        .textContent = String(seconds).padStart(2, "0");
+  document.getElementById("days").textContent = String(days).padStart(2, "0");
+  document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+  document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+  document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
 }
-
+updateCountdown();
 setInterval(updateCountdown, 1000);
 
-updateCountdown();
+
+/* ---------- Letter ---------- */
+
+const envelope = document.getElementById("envelope");
+const letterCard = document.getElementById("letterCard");
+const letterElement = document.getElementById("personalLetter");
+let letterStarted = false;
+
+envelope.addEventListener("click", () => {
+  envelope.classList.add("hidden");
+  letterCard.classList.remove("hidden");
+
+  if (!letterStarted) {
+    letterStarted = true;
+    typeLetter();
+  }
+});
+
+let letterIndex = 0;
+
+function typeLetter() {
+  if (letterIndex < PERSONAL.letter.length) {
+    letterElement.textContent += PERSONAL.letter[letterIndex++];
+    setTimeout(typeLetter, 18);
+  }
+}
 
 
-/* ================= CAKE ================= */
+/* ---------- 18 candles ---------- */
 
-let blownCandles = 0;
+const candleBox = document.getElementById("candles");
+let candlesOut = 0;
 
-function blowCandle(candle) {
+for (let i = 1; i <= PERSONAL.age; i++) {
+  const candle = document.createElement("button");
+  candle.className = "candle";
+  candle.setAttribute("aria-label", "Candle " + i);
 
-    if (candle.classList.contains("blown")) {
-        return;
-    }
+  const flame = document.createElement("span");
+  flame.className = "flame";
+  candle.appendChild(flame);
+
+  candle.addEventListener("click", () => {
+    if (candle.classList.contains("blown")) return;
 
     candle.classList.add("blown");
+    candlesOut++;
 
-    blownCandles++;
-
-    if (blownCandles === 3) {
-
-        document.getElementById("wishMessage")
-            .textContent =
-            "✨ Make your wish! ✨";
-
-        launchConfetti();
+    if (candlesOut === PERSONAL.age) {
+      document.getElementById("wishMessage").textContent =
+        "✨ All 18 candles are out. Make your wish, Mira. ✨";
+      burstConfetti(140);
     }
+  });
+
+  candleBox.appendChild(candle);
 }
 
 
-/* ================= GIFTS ================= */
+/* ---------- Photo placeholders ---------- */
 
-function openGift(number) {
-
-    const message =
-        document.getElementById("giftMessage");
-
-    if (number === 1) {
-
-        message.textContent =
-            "💌 Your first gift: A beautiful memory.";
-
-    }
-
-    if (number === 2) {
-
-        message.textContent =
-            "✨ Your second gift: A year full of happiness.";
-
-    }
-
-    if (number === 3) {
-
-        message.textContent =
-            "❤️ Your final gift: You are deeply loved.";
-
-        launchConfetti();
-    }
-}
-
-
-/* ================= MUSIC ================= */
-
-const music =
-    document.getElementById("birthdayMusic");
-
-const musicButton =
-    document.getElementById("musicButton");
-
-function toggleMusic() {
-
-    if (music.paused) {
-
-        music.play();
-
-        musicButton.textContent =
-            "⏸ Pause Music";
-
-    } else {
-
-        music.pause();
-
-        musicButton.textContent =
-            "▶ Play Music";
-    }
-}
-
-
-/* ================= CONFETTI ================= */
-
-function launchConfetti() {
-
-    const container =
-        document.getElementById("confetti");
-
-    const colors = [
-        "#ff4d8d",
-        "#ffd166",
-        "#06d6a0",
-        "#4cc9f0",
-        "#ffffff",
-        "#c77dff"
-    ];
-
-
-    for (let i = 0; i < 80; i++) {
-
-        const piece =
-            document.createElement("div");
-
-        piece.className =
-            "confetti-piece";
-
-        piece.style.left =
-            Math.random() * 100 + "%";
-
-        piece.style.backgroundColor =
-            colors[
-                Math.floor(
-                    Math.random() * colors.length
-                )
-            ];
-
-        piece.style.animationDelay =
-            Math.random() * 1.5 + "s";
-
-        piece.style.transform =
-            `rotate(${Math.random() * 360}deg)`;
-
-        container.appendChild(piece);
-
-
-        setTimeout(
-            () => piece.remove(),
-            4500
-        );
-    }
-}
-
-
-/* ================= FINAL SURPRISE ================= */
-
-function finalSurprise() {
-
-    launchConfetti();
-
-    const final =
-        document.querySelector(".final-section");
-
-    final.style.background =
-        "radial-gradient(circle, #ff2d75, #35002f 70%)";
-
-    document.querySelector(
-        ".final-content h2"
-    ).textContent =
-        "🎉 HAPPY BIRTHDAY! 🎉";
-
-    document.querySelector(
-        ".final-content p"
-    ).textContent =
-        "May your life be filled with beautiful moments, amazing memories and endless reasons to smile. ❤️";
-
-    document.querySelector(
-        ".final-content button"
-    ).textContent =
-        "🎂 Have The Best Birthday!";
-}
-
-
-/* ================= RANDOM CONFETTI ================= */
+document.querySelectorAll(".photo-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const filename = card.dataset.photo;
+    showToast("Later, add " + filename + " to the website folder.");
+  });
+});
 
 
 /*
-    Small surprise when the user
-    taps anywhere on the final section.
+  When you add photos later, change a card in index.html from:
+
+  <button class="photo-card placeholder" data-photo="photo1.jpg">
+    <span>01</span><b>Add photo 1</b>
+  </button>
+
+  to:
+
+  <button class="photo-card" data-photo="photo1.jpg">
+    <img src="photo1.jpg" alt="Memory 1">
+    <span>01</span><b>A caption</b>
+  </button>
 */
 
-document
-    .querySelector(".final-section")
-    .addEventListener(
-        "click",
-        function(event) {
 
-            if (event.target.tagName === "BUTTON") {
-                return;
-            }
+/* ---------- Gifts ---------- */
 
-            launchConfetti();
-        }
-    );
+document.querySelectorAll(".gift").forEach(gift => {
+  gift.addEventListener("click", () => {
+    const number = Number(gift.dataset.gift);
+    document.getElementById("giftMessage").textContent = PERSONAL.gifts[number];
+
+    if (number === 2) burstConfetti(60);
+  });
+});
+
+
+/* ---------- Chocolate secret ---------- */
+
+document.getElementById("chocolateBtn").addEventListener("click", () => {
+  document.getElementById("secretMessage").classList.remove("hidden");
+  burstConfetti(45);
+});
+
+
+/* ---------- Music ---------- */
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+musicBtn.addEventListener("click", async () => {
+  try {
+    if (music.paused) {
+      await music.play();
+      musicBtn.textContent = "⏸ Pause";
+    } else {
+      music.pause();
+      musicBtn.textContent = "▶ Play";
+    }
+  } catch {
+    showToast("Add birthday.mp3 to the website folder first.");
+  }
+});
+
+
+/* ---------- Final surprise ---------- */
+
+document.getElementById("finalMessage").textContent = PERSONAL.final;
+
+document.getElementById("finalBtn").addEventListener("click", () => {
+  burstConfetti(180);
+  document.getElementById("finalBtn").textContent = "Happy Birthday, Mira! ❤️";
+  showToast("The final chapter begins.");
+});
+
+
+/* ---------- Confetti ---------- */
+
+function burstConfetti(amount = 80) {
+  const colors = ["#ff78aa", "#b99cff", "#ffd98a", "#ffffff", "#ffb5d0"];
+
+  for (let i = 0; i < amount; i++) {
+    const piece = document.createElement("i");
+    piece.className = "confetti";
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = Math.random() * .8 + "s";
+    piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+    document.body.appendChild(piece);
+
+    setTimeout(() => piece.remove(), 3600);
+  }
+}
+
+
+/* ---------- Toast ---------- */
+
+let toastTimer;
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("toast-show");
+
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("toast-show");
+  }, 2800);
+}
