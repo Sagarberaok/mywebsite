@@ -1,12 +1,661 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: lightblue;
+    font-family: Arial, sans-serif;
+    background: #090014;
+    color: white;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* ================= OPENING ================= */
+
+.screen {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     text-align: center;
+
+    padding: 25px;
+
+    background:
+        radial-gradient(circle at top,
+        #4b0b63,
+        #090014 65%);
 }
 
-h1 {
-    color: darkblue;
+.opening-content {
+    max-width: 400px;
 }
 
-p {
+.gift-icon {
+    font-size: 80px;
+
+    animation:
+        floating 2s ease-in-out infinite;
+}
+
+.opening-content h1 {
+    font-size: 35px;
+    margin: 25px 0 15px;
+}
+
+.opening-content p {
+    min-height: 50px;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+
+/* ================= BUTTON ================= */
+
+button {
+    border: none;
+    cursor: pointer;
+
+    color: white;
+
+    background:
+        linear-gradient(135deg,
+        #ff4d8d,
+        #8e44ff);
+
+    padding: 15px 25px;
+
+    border-radius: 50px;
+
+    font-size: 16px;
+
+    box-shadow:
+        0 8px 30px rgba(255, 0, 120, .3);
+
+    transition: .3s;
+}
+
+button:active {
+    transform: scale(.94);
+}
+
+
+/* ================= HIDDEN ================= */
+
+.hidden {
+    display: none;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 25px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at center,
+        #7612a3,
+        #090014 65%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.small-text,
+.section-label {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #ff79aa;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin: 20px 0;
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    display: inline-block;
+    animation: heartbeat 1.2s infinite;
+}
+
+.subtitle {
+    color: #ddd;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.scroll-btn {
+    background: transparent;
+    border: 1px solid #ff75a7;
+}
+
+
+/* ================= BALLOONS ================= */
+
+.floating-balloon {
+    position: absolute;
+
+    font-size: 70px;
+
+    top: 10%;
+    left: 5%;
+
+    animation:
+        balloonMove 5s ease-in-out infinite;
+}
+
+.balloon2 {
+    left: auto;
+    right: 5%;
+
+    animation-delay: 1.5s;
+}
+
+
+/* ================= SECTIONS ================= */
+
+.section {
+    padding: 90px 20px;
+
+    text-align: center;
+
+    max-width: 600px;
+    margin: auto;
+}
+
+.section h2 {
+    font-size: 30px;
+    margin: 18px 0 35px;
+    line-height: 1.3;
+}
+
+
+/* ================= COUNTDOWN ================= */
+
+.countdown-section {
+    background:
+        linear-gradient(#090014, #170021);
+}
+
+.countdown {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.time-box {
+    background: rgba(255,255,255,.06);
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    border-radius: 20px;
+
+    padding: 20px 10px;
+}
+
+.time-box span {
+    display: block;
+
+    font-size: 35px;
+    font-weight: bold;
+
+    color: #ff73a8;
+}
+
+.time-box small {
+    color: #aaa;
+}
+
+
+/* ================= LETTER ================= */
+
+.letter-card {
+    background: rgba(255,255,255,.06);
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    border-radius: 25px;
+
+    padding: 30px;
+
+    text-align: left;
+
+    line-height: 1.8;
+
+    min-height: 250px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.3);
+}
+
+.cursor {
+    animation: blink .7s infinite;
+    color: #ff75a7;
+}
+
+
+/* ================= CAKE ================= */
+
+.cake-section {
+    background:
+        linear-gradient(#090014, #180020);
+}
+
+.instruction {
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.cake {
+    width: 240px;
+    height: 220px;
+
+    position: relative;
+
+    margin: 40px auto;
+}
+
+.cake-bottom,
+.cake-middle,
+.cake-top {
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 15px;
+}
+
+.cake-bottom {
+    width: 230px;
+    height: 80px;
+
+    bottom: 0;
+
+    background: #d95b91;
+}
+
+.cake-middle {
+    width: 200px;
+    height: 60px;
+
+    bottom: 65px;
+
+    background: #ff86b4;
+}
+
+.cake-top {
+    width: 175px;
+    height: 55px;
+
+    bottom: 110px;
+
+    background: #ffc1d9;
+}
+
+
+/* candles */
+
+.candle {
+    position: absolute;
+
+    bottom: 155px;
+
+    width: 18px;
+    height: 55px;
+
+    background: white;
+
+    border-radius: 5px;
+
+    z-index: 3;
+}
+
+.candle1 {
+    left: 65px;
+}
+
+.candle2 {
+    left: 111px;
+}
+
+.candle3 {
+    right: 65px;
+}
+
+.flame {
+    position: absolute;
+
+    width: 18px;
+    height: 25px;
+
+    top: -25px;
+
+    background: orange;
+
+    border-radius:
+        50% 50% 50% 50%;
+
+    box-shadow:
+        0 0 20px orange;
+
+    animation:
+        flame 0.5s infinite alternate;
+}
+
+.candle.blown .flame {
+    display: none;
+}
+
+.wish-message {
+    color: #ff75a7;
     font-size: 20px;
+}
+
+
+/* ================= MEMORIES ================= */
+
+.memory-container {
+    display: flex;
+
+    gap: 20px;
+
+    overflow-x: auto;
+
+    scroll-snap-type: x mandatory;
+
+    padding: 10px 0 30px;
+}
+
+.memory-card {
+    min-width: 280px;
+
+    scroll-snap-align: center;
+
+    background: rgba(255,255,255,.06);
+
+    border-radius: 25px;
+
+    padding: 20px;
+
+    text-align: left;
+}
+
+.memory-photo {
+    height: 220px;
+
+    border-radius: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 70px;
+
+    background:
+        linear-gradient(135deg,
+        #5e176e,
+        #ff4d8d);
+}
+
+.memory-card h3 {
+    margin-top: 18px;
+}
+
+.memory-card p {
+    color: #aaa;
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+
+/* ================= GIFTS ================= */
+
+.gift-container {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.gift-box {
+    width: 95px;
+    height: 110px;
+
+    border-radius: 20px;
+
+    font-size: 40px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.gift-box span {
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+#giftMessage {
+    margin-top: 30px;
+
+    color: #ff8db7;
+
+    font-size: 20px;
+
+    min-height: 40px;
+}
+
+
+/* ================= MUSIC ================= */
+
+.music-note {
+    margin-top: 20px;
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* ================= FINAL ================= */
+
+.final-section {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(circle,
+        #8b146d,
+        #090014 70%);
+}
+
+.final-content {
+    max-width: 450px;
+}
+
+.heart {
+    font-size: 70px;
+
+    animation:
+        heartbeat 1s infinite;
+}
+
+.final-content h2 {
+    font-size: 40px;
+    margin: 25px 0;
+}
+
+.final-content p {
+    line-height: 1.8;
+    color: #ddd;
+
+    margin-bottom: 30px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+
+    padding: 40px 20px;
+
+    background: #050008;
+
+    color: #aaa;
+}
+
+.footer-small {
+    margin-top: 10px;
+}
+
+
+/* ================= CONFETTI ================= */
+
+#confetti {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 9999;
+}
+
+.confetti-piece {
+    position: absolute;
+
+    width: 8px;
+    height: 14px;
+
+    top: -20px;
+
+    animation:
+        confettiFall 3s linear forwards;
+}
+
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes floating {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes heartbeat {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes balloonMove {
+
+    0%,100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-40px) rotate(5deg);
+    }
+}
+
+@keyframes flame {
+
+    from {
+        transform: scale(.9) rotate(-3deg);
+    }
+
+    to {
+        transform: scale(1.1) rotate(3deg);
+    }
+}
+
+@keyframes blink {
+
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes confettiFall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .section h2 {
+        font-size: 26px;
+    }
+
+    .gift-box {
+        width: 85px;
+    }
+
 }
